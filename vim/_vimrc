@@ -1,0 +1,217 @@
+" Vim with all enhancements
+source $VIMRUNTIME/vimrc_example.vim
+
+" Use the internal diff if available.
+" Otherwise use the special 'diffexpr' for Windows.
+if &diffopt !~# 'internal'
+  set diffexpr=MyDiff()
+endif
+function MyDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg1 = substitute(arg1, '!', '\!', 'g')
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg2 = substitute(arg2, '!', '\!', 'g')
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  let arg3 = substitute(arg3, '!', '\!', 'g')
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      if empty(&shellxquote)
+        let l:shxq_sav = ''
+        set shellxquote&
+      endif
+      let cmd = '"' . $VIMRUNTIME . '\diff"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  let cmd = substitute(cmd, '!', '\!', 'g')
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
+  if exists('l:shxq_sav')
+    let &shellxquote=l:shxq_sav
+  endif
+endfunction
+
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+"主题
+    colorscheme default
+    set background=dark
+    " set airline theme
+    let g:airline_theme='minimalist'
+    
+
+if has('gui_running')
+    "set guioptions-=T  " no toolbar
+    " 窗口大小
+    set lines=35 columns=110 linespace=0
+    "字体
+    set guifont=consolas:h11
+    set guifontwide=等距更纱黑体_SC:h10
+    " set guifont=Menlo:h11
+    " 窗口启动位置
+    winpos 20 20
+    "主题
+    colorscheme one
+    set background=light
+    " set airline theme
+    " let g:airline_theme='one'
+    " 光标设置
+    highlight Cursor guibg=GRAY guifg=NONE
+    " 高亮光标所在行
+    set cursorline
+
+endif
+
+
+
+" 高亮第 80 列，推荐
+" set colorcolumn=80
+
+
+" undo文件目录 
+set undodir=~/.vim/undodir
+set undofile
+" 不生成备份文件
+set nobackup
+
+" 禁止生成 swap 恢复文件
+" 早期计算机经常崩溃，vim 会自动创建一个 .swp 结尾的文件
+" 崩溃重启后可以从 .swap 文件恢复
+" 现在计算机鲜少崩溃了，可以禁用此功能
+set noswapfile
+
+" vim 内部使用的编码，默认使用 latin1，改成通用的 utf8 编码，避免乱码
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,chinese,cp936
+language messages zh_CN.utf-8
+
+" 文件编码探测列表
+" vim 启动的时候会依次使用本配置中的编码对文件内容进行解码
+" 如果遇到解码失败，则尝试使用下一个编码
+" 常见的乱码基本都是 windows 下的 gb2312, gbk, gb18030 等编码导致的
+" 所以探测一下 utf8 和 gbk 足以应付大多数情况了
+" set fileencodings=utf-8,gb18030
+
+" 在插入模式按回车时 vim 会自动根据上一行的缩进级别缩进
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+
+set showmatch
+set hlsearch
+set incsearch
+
+" 修正 vim 删除/退格键行为
+" 原生的 vim 行为有点怪：
+" 如果你在一行的开头切换到插入模式，这时按退格无法退到上一行
+" 如果你在一行的某一列切换到插入模式，这时按退格无法退删除这一列之前的字符
+" 如果你开启了 autoindent，按回车时 vim 会根据上一行自动缩进，这时按退格无法删除缩进字符
+" 通过设置 eol, start 和 indent 可以修正上述行为
+set backspace=eol,start,indent
+
+" vim 默认使用单行显示状态，但有些插件需要使用双行展示，不妨直接设成 2
+set laststatus=2
+
+
+
+" 显示窗口比较小的时候折行展示，不然需要水平翻页，推荐
+set linebreak
+
+" 开启语法高亮
+syntax on
+
+" 开启自动识别文件类型，并根据文件类型加载不同的插件和缩进规则
+filetype plugin indent on
+
+"不显示工具/菜单栏
+set guioptions-=T
+set guioptions-=m
+set guioptions-=L
+" 侧边栏
+set guioptions-=r
+set guioptions-=b
+
+" 使用内置 tab 样式而不是 gui
+set guioptions-=e
+
+"设置tab的顶部标签栏，0为隐藏，1为新建显示，2为始终显示，相关tab命令
+set showtabline=1
+
+" 行号
+set relativenumber
+
+" 与windows共享剪贴板 
+set clipboard+=unnamed 
+
+" 不要使用vi的键盘模式，而是vim自己的 
+set nocompatible 
+
+set completeopt=preview,menu
+
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+" Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Unmanaged plugin (manually installed and updated)
+Plug '~/my-prototype-plugin'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Plug 'SirVer/ultisnips' 
+" Plug 'honza/vim-snippets'
+
+Plug 'terryma/vim-multiple-cursors'
+
+Plug 'morhetz/gruvbox'
+
+Plug 'NLKNguyen/papercolor-theme'
+
+Plug 'ctrlpvim/ctrlp.vim'
+
+Plug 'mhinz/vim-startify'
+
+
+" Initialize plugin system
+call plug#end()
+
+map <F3> :NERDTreeMirror<CR>
+map <F3> :NERDTreeToggle<CR>
+
+
+" If you like the scrolling to go a bit smoother, you can use these mappings: 
+:map <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
+:map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
+
+" :map <C-B> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
+" :map <C-F> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
+
+" autocmd vimenter * ++nested colorscheme gruvbox
+
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
