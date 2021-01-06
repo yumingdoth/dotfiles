@@ -14,8 +14,9 @@ set encoding=utf-8
 " 终端配色
 set term=xterm-256color
 set background=dark
-" colorscheme default
-hi TabLineFill ctermbg=237 ctermfg=237
+colorscheme gruvbox
+hi TabLineFill ctermbg=237 ctermfg=15
+hi Search ctermfg=245
 
 " 自动缩进
 set smartindent
@@ -40,15 +41,6 @@ filetype plugin indent on
 
 "设置tab的顶部标签栏，0为隐藏，1为新建显示，2为始终显示，相关tab命令
 set showtabline=1
-
-
-
-" 平滑滚屏
-:map <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
-:map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
-" NERDTree
-map <F3> :NERDTreeMirror<CR>
-map <F3> :NERDTreeToggle<CR>
 
 
 
@@ -82,6 +74,41 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'mhinz/vim-startify'
 
+Plug 'mbbill/undotree'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Initialize plugin system
 call plug#end()
+
+
+
+
+" 平滑滚屏
+:map <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
+:map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
+" NERDTree
+map <F3> :NERDTreeMirror<CR>
+map <F3> :NERDTreeToggle<CR>
+
+" undotree
+nnoremap <F5> :UndotreeToggle<CR>
+
+
+let g:coc_global_extensions = [
+    \ 'coc-css',
+    \ 'coc-clangd',
+    \ 'coc-explorer',
+    \ 'coc-html',
+    \ 'coc-json',
+    \ 'coc-lists',
+    \ 'coc-python',
+    \ 'coc-snippets',
+    \ 'coc-sql',
+    \ 'coc-vetur',
+    \ 'coc-vimlsp',
+    \ 'coc-xml',
+    \ 'coc-yaml',
+    \ 'coc-yank']
+
+
