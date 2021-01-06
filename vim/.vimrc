@@ -1,6 +1,9 @@
+" .vimrc
+
 
 set nocompatible
 
+set termencoding=utf-8
 " 开启行号显示
 set number 
 set relativenumber
@@ -12,10 +15,11 @@ syntax on
 " 文件编码
 set encoding=utf-8 
 " 终端配色
-set term=xterm-256color
 set background=dark
 colorscheme gruvbox
+" tab页颜色
 hi TabLineFill ctermbg=237 ctermfg=15
+" 搜索高亮颜色
 hi Search ctermfg=245
 
 " 自动缩进
@@ -41,7 +45,14 @@ filetype plugin indent on
 
 "设置tab的顶部标签栏，0为隐藏，1为新建显示，2为始终显示，相关tab命令
 set showtabline=1
-
+" 显示命令
+set showcmd
+" 显示提示列表
+set wildmenu
+" 设置当前行到屏幕上下边缘的距离
+set scrolloff=5
+" 记录光标在文件的位置，重新打开定位到该位置
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
 " 插件
@@ -94,7 +105,7 @@ map <F3> :NERDTreeToggle<CR>
 " undotree
 nnoremap <F5> :UndotreeToggle<CR>
 
-
+" coc
 let g:coc_global_extensions = [
     \ 'coc-css',
     \ 'coc-clangd',
@@ -112,3 +123,4 @@ let g:coc_global_extensions = [
     \ 'coc-yank']
 
 
+exec 'nohlsearch'
