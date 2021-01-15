@@ -102,6 +102,8 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'morhetz/gruvbox'
 
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
+
 " Initialize plugin system
 call plug#end()
 
@@ -197,6 +199,10 @@ let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 " timeoutlen is used for mapping delays, 
 " and ttimeoutlen is used for key code delays
 set timeoutlen=1000 ttimeoutlen=50
+
+" Strange character (>4;2m) in vim
+let &t_TI = ""
+let &t_TE = ""
 
 " other settings end
 
