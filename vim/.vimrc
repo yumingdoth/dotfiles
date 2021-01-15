@@ -17,8 +17,6 @@ set encoding=utf-8
 " 终端配色
 set background=dark
 colorscheme gruvbox
-" tab页颜色
-hi TabLineFill ctermbg=237 ctermfg=15
 " 搜索高亮颜色
 hi Search ctermfg=245
 
@@ -76,8 +74,7 @@ Plug '~/my-prototype-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Plug 'SirVer/ultisnips' 
-" Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 Plug 'terryma/vim-multiple-cursors'
 
@@ -89,9 +86,22 @@ Plug 'mbbill/undotree'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'preservim/tagbar'
+
+Plug 'Yggdroot/indentLine' 
+
+Plug 'airblade/vim-gitgutter'
+
+Plug 'morhetz/gruvbox'
+
 " Initialize plugin system
 call plug#end()
 
+
+
+" key map start
 
 
 
@@ -105,7 +115,40 @@ map <F3> :NERDTreeToggle<CR>
 " undotree
 nnoremap <F5> :UndotreeToggle<CR>
 
-" coc
+" tagbar
+nmap <F8> :TagbarToggle<CR>
+
+" coc-yank
+nnoremap <silent> <LEADER>y  :<C-u>CocList -A --normal yank<cr>
+
+" coc 
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+
+
+" key map end 
+
+
+" other settings start
+
+
+" coc settings
 let g:coc_global_extensions = [
     \ 'coc-css',
     \ 'coc-clangd',
@@ -113,7 +156,7 @@ let g:coc_global_extensions = [
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-lists',
-    \ 'coc-python',
+    \ 'coc-pyright',
     \ 'coc-snippets',
     \ 'coc-sql',
     \ 'coc-vetur',
@@ -122,5 +165,33 @@ let g:coc_global_extensions = [
     \ 'coc-yaml',
     \ 'coc-yank']
 
+
+" TextEdit might fail if hidden is not set.
+set hidden
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+" 开启airline标签页显示
+let g:airline#extensions#tabline#enabled = 1
+" airline主题
+let g:airline_theme='gruvbox'
+" [the reason we are using autocmd is that, vim always read .vimrc file first
+" and after that starts to load plugins, so in this case, we use autocmd
+" vimenter, to be sure that all plugins are loaded completely and then use
+" gruvbox]
+autocmd vimenter * ++nested colorscheme gruvbox
+" path formatter 
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+
+let &t_SI.="\e[5 q" "SI = INSERT mode
+let &t_SR.="\e[4 q" "SR = REPLACE mode
+let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
+
+" timeoutlen is used for mapping delays, 
+" and ttimeoutlen is used for key code delays
+set timeoutlen=1000 ttimeoutlen=50
+
+" other settings end
 
 exec 'nohlsearch'
