@@ -16,7 +16,6 @@ syntax on
 set encoding=utf-8 
 " 终端配色
 set background=dark
-colorscheme gruvbox
 " 搜索高亮颜色
 hi Search ctermfg=245
 
@@ -180,13 +179,13 @@ set hidden
 set updatetime=300
 " 开启airline标签页显示
 let g:airline#extensions#tabline#enabled = 1
-" airline主题
-let g:airline_theme='gruvbox'
 " [the reason we are using autocmd is that, vim always read .vimrc file first
 " and after that starts to load plugins, so in this case, we use autocmd
 " vimenter, to be sure that all plugins are loaded completely and then use
 " gruvbox]
 autocmd vimenter * ++nested colorscheme gruvbox
+" airline主题
+let g:airline_theme='gruvbox'
 " path formatter 
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
