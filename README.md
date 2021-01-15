@@ -50,27 +50,23 @@ ln -s /home/ming/dotfiles/vim/.vimrc .vimrc
 #### tmux 
 1. [tmux](https://github.com/tmux/tmux)
 ```
-git clone https://github.com/tmux/tmux.git
-cd tmux
-sh autogen.sh
-./configure && make
+sudo apt install tmux
 ```
 
 2. plugin
 - [tpm](https://github.com/tmux-plugins/tpm)
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
 
-3. theme
-- [tmux-themepack](https://github.com/jimeh/tmux-themepack)
-
-4. make symbolic links
+3. make symbolic links
 ```
 ln -s /home/ming/dotfiles/tmux/.tmux.conf .tmux.conf
-tmux source ~/.tmux.conf
 ```
 
+4. Enter tmux, then press prefix + I (capital i, as in Install) to fetch the plugin.
 
-
-
-
-
-
+5. for the [powerline](https://github.com/powerline/powerline)
+```
+sudo apt install powerline
+```
