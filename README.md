@@ -1,8 +1,8 @@
 # dotfiles
 
 ## Prerequisites
- - nodejs [cnpm]
- - git
+ - [nodejs](https://github.com/nodesource/distributions/blob/master/README.md#debinstall), [[cnpm](https://www.npmjs.com/package/cnpm)]
+ - [git](https://git-scm.com/download/linux)
  - curl
 
 ## Installation
@@ -15,7 +15,7 @@ git clone https://github.com/yumingdoth/dotfiles.git
 #### zsh
 1. [zsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
 ```
-sudo apt install zshrc
+sudo apt install zsh
 chsh -s $(which zsh)
 ```
 
@@ -26,14 +26,20 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 - install plugins
     - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md)
+    ```
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    ```
     - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
+    ```
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    ```
 
 3. make symbolic links
 ```
-ln -s /home/ming/dotfiles/zsh/.zhsrc .zhsrc
+ln -s /home/ming/dotfiles/zsh/.zshrc .zshrc
 ```
 
-4. source .zshrc
+4. source .zshrc (maybe need logout and login again).
 
 #### vim
 1. [vim](https://www.vim.org/download.php)
@@ -60,6 +66,12 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ln -s /home/ming/dotfiles/vim/.vimrc .vimrc
 ```
 
+4. install plugins
+```
+vim
+:PlugInstall
+```
+
 #### tmux 
 1. [tmux](https://github.com/tmux/tmux)
 ```
@@ -83,3 +95,23 @@ ln -s /home/ming/dotfiles/tmux/.tmux.conf .tmux.conf
 ```
 sudo apt install powerline
 ```
+
+## FAQ
+- curl: (7) Failed to connect to raw.githubusercontent.com port 443: Connection refused:
+    
+    probably because of DNS problem(maybe the GFW).
+    
+    try use proxy(vpn).
+
+
+    or try this: https://github.com/hawtim/blog/issues/10
+
+    breifly:
+    ```
+    $ sudo cp /etc/host /etc/hosts.bak
+    $ sudo vim /etc/hosts
+
+    # append the end of hosts file
+    199.232.96.133 raw.githubusercontent.com
+    ```
+
