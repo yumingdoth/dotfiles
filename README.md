@@ -1,7 +1,7 @@
 # dotfiles
 
 ## Prerequisites
- - nodejs [or cnpm]
+ - nodejs [cnpm]
  - git
  - curl
 
@@ -14,8 +14,16 @@ git clone https://github.com/yumingdoth/dotfiles.git
 ### install 
 #### zsh
 1. [zsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
+```
+sudo apt install zshrc
+chsh -s $(which zsh)
+```
 
 2. [oh my zsh](https://github.com/ohmyzsh/ohmyzsh)
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
 - install plugins
     - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md)
     - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
@@ -29,6 +37,11 @@ ln -s /home/ming/dotfiles/zsh/.zhsrc .zhsrc
 
 #### vim
 1. [vim](https://www.vim.org/download.php)
+```
+sudo add-apt-repository ppa:jonathonf/vimrc
+apt udpate
+sudo apt install vim
+```
 
 2. [vim-plug](https://github.com/junegunn/vim-plug)
 ```
