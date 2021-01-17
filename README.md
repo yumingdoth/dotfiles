@@ -36,7 +36,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 3. make symbolic links
 ```
-ln -s /home/ming/dotfiles/zsh/.zshrc .zshrc
+ln -sf /home/ming/dotfiles/zsh/.zshrc .zshrc
 ```
 
 4. source .zshrc (maybe need logout and login again).
@@ -108,7 +108,7 @@ sudo apt install powerline
 
     breifly:
     ```
-    $ sudo cp /etc/host /etc/hosts.bak
+    $ sudo cp /etc/hosts /etc/hosts.bak
     $ sudo vim /etc/hosts
 
     # append the end of hosts file
