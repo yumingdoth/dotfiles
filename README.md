@@ -44,7 +44,7 @@ ln -sf /home/ming/dotfiles/zsh/.zshrc .zshrc
 #### vim
 1. [vim](https://www.vim.org/download.php)
 ```
-sudo add-apt-repository ppa:jonathonf/vimrc
+sudo add-apt-repository ppa:jonathonf/vim
 apt udpate
 sudo apt install vim
 ```
