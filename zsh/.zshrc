@@ -74,6 +74,7 @@ plugins=(
     z
     zsh-syntax-highlighting
     zsh-autosuggestions
+    emoji
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -114,6 +115,7 @@ alias docker-compose='sudo docker-compose'
 alias weather='curl wttr.in/~shenzhen'
 alias cheatsheet='curl -L cheat.sh'
 alias clock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done&'
+alias ra='ranger'
 
 export EDITOR=vim
 
@@ -168,3 +170,5 @@ export LESS_TERMCAP_so=$'\E[1m\E[33m\E[44m'
 
 # zsh autosuggestions在tmux环境下高亮问题处理
 export TERM=xterm-256color
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
