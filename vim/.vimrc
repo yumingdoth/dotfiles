@@ -102,7 +102,7 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'morhetz/gruvbox'
 
-Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
+" Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
 
