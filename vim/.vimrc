@@ -104,6 +104,8 @@ Plug 'morhetz/gruvbox'
 
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
 
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
+
 " Initialize plugin system
 call plug#end()
 
@@ -160,7 +162,6 @@ nmap <silent> gr <Plug>(coc-references)
 let g:coc_global_extensions = [
     \ 'coc-css',
     \ 'coc-clangd',
-    \ 'coc-explorer',
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-lists',

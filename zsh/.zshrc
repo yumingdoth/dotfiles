@@ -126,6 +126,8 @@ export PATH=$PATH:$JAVA_HOME/bin
 export MAVE_HOME=/opt/apache-maven-3.6.3
 export PATH=$PATH:$MAVE_HOME/bin
 
+export PATH=$PATH:/usr/local/go/bin
+
 
 # key bindings
 bindkey "\e[1~" beginning-of-line
@@ -172,3 +174,4 @@ export LESS_TERMCAP_so=$'\E[1m\E[33m\E[44m'
 export TERM=xterm-256color
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export GOPROXY=https://goproxy.io,direct

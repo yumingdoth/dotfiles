@@ -1,3 +1,4 @@
+hahaha
 # dotfiles
 
 ## Prerequisites
@@ -45,7 +46,7 @@ ln -sf /home/ming/dotfiles/zsh/.zshrc .zshrc
 1. [vim](https://www.vim.org/download.php)
 ```
 sudo add-apt-repository ppa:jonathonf/vim
-apt udpate
+apt update
 sudo apt install vim
 ```
 
