@@ -107,7 +107,7 @@ Plug 'morhetz/gruvbox'
 
 " Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
 
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'  }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go'  }
 
 " Initialize plugin system
 call plug#end()
@@ -135,7 +135,10 @@ nmap <F8> :TagbarToggle<CR>
 nnoremap <silent> <LEADER>y  :<C-u>CocList -A --normal yank<cr>
 
 " coc 
-" GoTo code navigation.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+"GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -155,6 +158,7 @@ nnoremap <C-[> <C-[>:noh<CR>
 let g:coc_global_extensions = [
     \ 'coc-css',
     \ 'coc-clangd',
+    \ 'coc-explorer',
     \ 'coc-git',
     \ 'coc-go',
     \ 'coc-html',
@@ -186,7 +190,6 @@ autocmd vimenter * ++nested colorscheme gruvbox
 let g:airline_theme='gruvbox'
 " path formatter 
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-
 
 let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
