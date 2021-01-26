@@ -50,38 +50,6 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# some more ls aliases
-alias ll='ls -hlF'
-alias la='ls -A'
-alias l='ls -lCF'
-alias lla='ll -a'
-
-alias docker='sudo docker'
-alias docker-compose='sudo docker-compose'
-alias weather='curl wttr.in/~shenzhen'
-alias cheatsheet='curl -L cheat.sh'
-alias clock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done&'
-alias ra='ranger'
-alias vim='nvim'
-
-# Pipe Highlight to less
-alias less='less -m -N -g -i -J --line-numbers --underline-special'
-alias more='less'
-
-# Use "highlight" in place of "cat"
-alias cat="highlight $1 --out-format xterm256 --force -s solarized-dark --no-trailing-nl"
-
-
-
 # export env
 # editor
 export EDITOR=nvim
@@ -122,6 +90,38 @@ export TERM=xterm-256color
 # Pipe Highlight to less
 export LESSOPEN="| $(which highlight) %s --out-format xterm256 --force -s solarized-light --no-trailing-nl"
 export LESS=" -R"
+
+
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# some more ls aliases
+alias ll='ls -hlF'
+alias la='ls -A'
+alias l='ls -lCF'
+alias lla='ll -a'
+
+alias docker='sudo docker'
+alias docker-compose='sudo docker-compose'
+alias weather='curl wttr.in/~shenzhen'
+alias cheatsheet='curl -L cheat.sh'
+alias clock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done&'
+alias ra='ranger'
+alias vim='nvim'
+
+# Pipe Highlight to less
+alias less='less -m -N -g -i -J --line-numbers --underline-special'
+alias more='less'
+
+# Use "highlight" in place of "cat"
+alias cat="highlight $1 --out-format xterm256 --force -s solarized-dark --no-trailing-nl"
 
 
 
