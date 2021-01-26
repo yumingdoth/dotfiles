@@ -18,59 +18,6 @@ export ZSH="/home/ming/.oh-my-zsh"
 # ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -117,6 +64,7 @@ alias ll='ls -hlF'
 alias la='ls -A'
 alias l='ls -lCF'
 alias lla='ll -a'
+
 alias docker='sudo docker'
 alias docker-compose='sudo docker-compose'
 alias weather='curl wttr.in/~shenzhen'
@@ -125,17 +73,56 @@ alias clock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput 
 alias ra='ranger'
 alias vim='nvim'
 
+# Pipe Highlight to less
+alias less='less -m -N -g -i -J --line-numbers --underline-special'
+alias more='less'
+
+# Use "highlight" in place of "cat"
+alias cat="highlight $1 --out-format xterm256 --force -s solarized-dark --no-trailing-nl"
+
+
+
+# export env
+# editor
 export EDITOR=nvim
 
+# java
 export JAVA_HOME=/usr/local/java/jdk1.8.0_231
 export CLASSPATH=.:$JAVA_HOME/lib
 export PATH=$PATH:$JAVA_HOME/bin
 
+# maven
 export MAVE_HOME=/opt/apache-maven-3.6.3
 export PATH=$PATH:$MAVE_HOME/bin
 
+# golang
 export GOPATH=/home/ming/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export GOPROXY=https://goproxy.io,direct
+export GO111MODULE=auto
+
+# 放到你的 ~/.bashrc 配置文件中，给 man 增加漂亮的色彩高亮
+export LESS_TERMCAP_mb=$'\E[1m\E[32m'
+export LESS_TERMCAP_mh=$'\E[2m'
+export LESS_TERMCAP_mr=$'\E[7m'
+export LESS_TERMCAP_md=$'\E[1m\E[36m'
+export LESS_TERMCAP_ZW=""
+export LESS_TERMCAP_us=$'\E[4m\E[1m\E[37m'
+export LESS_TERMCAP_me=$'\E(B\E[m'
+export LESS_TERMCAP_ue=$'\E[24m\E(B\E[m'
+export LESS_TERMCAP_ZO=""
+export LESS_TERMCAP_ZN=""
+export LESS_TERMCAP_se=$'\E[27m\E(B\E[m'
+export LESS_TERMCAP_ZV=""
+export LESS_TERMCAP_so=$'\E[1m\E[33m\E[44m'
+
+# zsh autosuggestions在tmux环境下高亮问题处理
+export TERM=xterm-256color
+
+# Pipe Highlight to less
+export LESSOPEN="| $(which highlight) %s --out-format xterm256 --force -s solarized-light --no-trailing-nl"
+export LESS=" -R"
+
 
 
 # key bindings
@@ -164,37 +151,11 @@ bindkey "\e[F" end-of-line
 # completion in the middle of a line
 bindkey '^i' expand-or-complete-prefix
 
-# 放到你的 ~/.bashrc 配置文件中，给 man 增加漂亮的色彩高亮
-export LESS_TERMCAP_mb=$'\E[1m\E[32m'
-export LESS_TERMCAP_mh=$'\E[2m'
-export LESS_TERMCAP_mr=$'\E[7m'
-export LESS_TERMCAP_md=$'\E[1m\E[36m'
-export LESS_TERMCAP_ZW=""
-export LESS_TERMCAP_us=$'\E[4m\E[1m\E[37m'
-export LESS_TERMCAP_me=$'\E(B\E[m'
-export LESS_TERMCAP_ue=$'\E[24m\E(B\E[m'
-export LESS_TERMCAP_ZO=""
-export LESS_TERMCAP_ZN=""
-export LESS_TERMCAP_se=$'\E[27m\E(B\E[m'
-export LESS_TERMCAP_ZV=""
-export LESS_TERMCAP_so=$'\E[1m\E[33m\E[44m'
 
-# zsh autosuggestions在tmux环境下高亮问题处理
-export TERM=xterm-256color
 
+# other settings
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export GOPROXY=https://goproxy.io,direct
-export GO111MODULE=auto
-
-# Pipe Highlight to less
-export LESSOPEN="| $(which highlight) %s --out-format xterm256 --force -s solarized-light --no-trailing-nl"
-export LESS=" -R"
-alias less='less -m -N -g -i -J --line-numbers --underline-special'
-alias more='less'
-
-# Use "highlight" in place of "cat"
-alias cat="highlight $1 --out-format xterm256 --force -s solarized-dark --no-trailing-nl"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
