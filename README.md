@@ -1,4 +1,3 @@
-hahaha
 # dotfiles
 
 ## Prerequisites

@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -9,7 +16,7 @@ export ZSH="/home/ming/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="gentoo"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -116,8 +123,9 @@ alias weather='curl wttr.in/~shenzhen'
 alias cheatsheet='curl -L cheat.sh'
 alias clock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done&'
 alias ra='ranger'
+alias vim='nvim'
 
-export EDITOR=vim
+export EDITOR=nvim
 
 export JAVA_HOME=/usr/local/java/jdk1.8.0_231
 export CLASSPATH=.:$JAVA_HOME/lib
@@ -126,7 +134,8 @@ export PATH=$PATH:$JAVA_HOME/bin
 export MAVE_HOME=/opt/apache-maven-3.6.3
 export PATH=$PATH:$MAVE_HOME/bin
 
-export PATH=$PATH:/usr/local/go/bin
+export GOPATH=/home/ming/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 
 # key bindings
@@ -174,4 +183,18 @@ export LESS_TERMCAP_so=$'\E[1m\E[33m\E[44m'
 export TERM=xterm-256color
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 export GOPROXY=https://goproxy.io,direct
+export GO111MODULE=auto
+
+# Pipe Highlight to less
+export LESSOPEN="| $(which highlight) %s --out-format xterm256 --force -s solarized-light --no-trailing-nl"
+export LESS=" -R"
+alias less='less -m -N -g -i -J --line-numbers --underline-special'
+alias more='less'
+
+# Use "highlight" in place of "cat"
+alias cat="highlight $1 --out-format xterm256 --force -s solarized-dark --no-trailing-nl"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

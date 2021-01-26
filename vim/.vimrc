@@ -3,7 +3,6 @@
 
 set nocompatible
 
-set termencoding=utf-8
 " 开启行号显示
 set number 
 set relativenumber
@@ -14,11 +13,13 @@ hi CursorLine term=bold cterm=bold ctermbg=237
 syntax on
 " 文件编码
 set encoding=utf-8 
+set termencoding=utf-8
 " 终端配色
 set background=dark
 " 搜索高亮颜色
 hi Search ctermfg=245
-
+" 禁止生成 swap 恢复文件
+set noswapfile
 " 自动缩进
 set smartindent
 " 缩进操作 ( << 和 >> )时缩进的列数
@@ -68,7 +69,9 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 " On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'preservim/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
 
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -119,8 +122,8 @@ call plug#end()
 :map <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
 :map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 " NERDTree
-map <F3> :NERDTreeMirror<CR>
-map <F3> :NERDTreeToggle<CR>
+nnoremap <F3> :NERDTreeMirror<CR>
+nnoremap <F3> :NERDTreeToggle<CR>
 
 " undotree
 nnoremap <F5> :UndotreeToggle<CR>
@@ -132,24 +135,14 @@ nmap <F8> :TagbarToggle<CR>
 nnoremap <silent> <LEADER>y  :<C-u>CocList -A --normal yank<cr>
 
 " coc 
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" cancel hignlight
+nnoremap <C-[> <C-[>:noh<CR>
 
 
 " key map end 
@@ -162,6 +155,8 @@ nmap <silent> gr <Plug>(coc-references)
 let g:coc_global_extensions = [
     \ 'coc-css',
     \ 'coc-clangd',
+    \ 'coc-git',
+    \ 'coc-go',
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-lists',
@@ -206,5 +201,3 @@ let &t_TI = ""
 let &t_TE = ""
 
 " other settings end
-
-exec 'nohlsearch'
