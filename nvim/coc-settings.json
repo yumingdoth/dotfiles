@@ -1,0 +1,6 @@
+{
+    "suggest.timeout": 5000,
+    "python.pythonPath": "python3",
+    "git.addGBlameToVirtualText": true,
+    "git.enableGutters": false
+}
