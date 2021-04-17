@@ -3,64 +3,57 @@
 
 set nocompatible
 
-" 开启行号显示
+" line no
 set number 
-set relativenumber
-" 高亮光标所在行
+" set relativenumber
+" highlight current line
 set cursorline
 hi CursorLine term=bold cterm=bold ctermbg=237
-" 开启语法高亮
+" syntax
 syntax on
-" 文件编码
+" encoding
 set encoding=utf-8 
 set termencoding=utf-8
-" 终端配色
+" bg
 set background=dark
-" 搜索高亮颜色
+" highlight search
 hi Search ctermfg=245
-" 禁止生成 swap 恢复文件
+" noswapfile
 set noswapfile
-" 自动缩进
+" auto indent
 set smartindent
-" 缩进操作 ( << 和 >> )时缩进的列数
+" indent columns (when using >> or <<)
 set shiftwidth=4
-" 使用空格替代Tab键
+" replace tab with space
 set expandtab
-" Tab输入的空格数
+" space count
 set tabstop=4
 " 关闭softtabstop
 set softtabstop=0
 
-" 插入括号是匹配另外一个 
+" showmatch
 set showmatch
-" 高亮搜索
+" highlight
 set hlsearch
-" 搜索输入时即时匹配关键词 
+" highlight on typing
 set incsearch
 
-" 开启自动识别文件类型，并根据文件类型加载不同的插件和缩进规则
+" filetype
 filetype plugin indent on
 
-"设置tab的顶部标签栏，0为隐藏，1为新建显示，2为始终显示，相关tab命令
+"top tab，0:hide，1:show new tab，2:always
 set showtabline=1
-" 显示命令
+" showcmd
 set showcmd
-" 显示提示列表
+" show tip
 set wildmenu
-" 设置当前行到屏幕上下边缘的距离
+" line count to edge
 set scrolloff=5
-" 记录光标在文件的位置，重新打开定位到该位置
+" remember cursor position
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
-" 插件
-" Automatic installation
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
+" plugin
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
@@ -118,7 +111,7 @@ call plug#end()
 
 
 
-" 平滑滚屏
+" smooth scroll
 :map <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
 :map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 " NERDTree
@@ -144,8 +137,10 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" cancel hignlight
-nnoremap <C-[> <C-[>:noh<CR>
+" cancel hignlight note: in wls2, using this will cause a problem, enter
+" replace mode when open vim
+" nnoremap <C-[> <C-[>:noh<CR>
+nnoremap <C-L> <C-L>:noh<CR>
 
 
 " key map end 
@@ -179,14 +174,14 @@ set hidden
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
-" 开启airline标签页显示
+" enable airline tab
 let g:airline#extensions#tabline#enabled = 1
 " [the reason we are using autocmd is that, vim always read .vimrc file first
 " and after that starts to load plugins, so in this case, we use autocmd
 " vimenter, to be sure that all plugins are loaded completely and then use
 " gruvbox]
 autocmd vimenter * ++nested colorscheme gruvbox
-" airline主题
+" airline theme
 let g:airline_theme='gruvbox'
 " path formatter 
 let g:airline#extensions#tabline#formatter = 'unique_tail'

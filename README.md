@@ -38,8 +38,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ```
 ln -sf /home/ming/dotfiles/zsh/.zshrc .zshrc
 ```
+4. install theme
+```
+git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
 
-4. source .zshrc (maybe need logout and login again).
+5. source .zshrc (maybe need logout and login again).
 
 #### vim
 1. [vim](https://www.vim.org/download.php)

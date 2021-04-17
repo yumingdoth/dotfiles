@@ -52,7 +52,7 @@ source $ZSH/oh-my-zsh.sh
 
 # export env
 # editor
-export EDITOR=nvim
+export EDITOR=vim
 
 # java
 export JAVA_HOME=/usr/local/java/jdk1.8.0_231
@@ -114,7 +114,7 @@ alias weather='curl wttr.in/~shenzhen'
 alias cheatsheet='curl -L cheat.sh'
 alias clock='while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done&'
 alias ra='ranger'
-alias vim='nvim'
+# alias vim='nvim'
 
 # Pipe Highlight to less
 alias less='less -m -N -g -i -J --line-numbers --underline-special'
